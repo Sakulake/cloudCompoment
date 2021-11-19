@@ -1,6 +1,7 @@
 package com.learn.springcloud.feignapi;
 
 import com.learn.springcloud.bo.SayHelloBO;
+import com.learn.springcloud.feignapi.hystrix.MyFeignClientApiHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @description
  */
 
-@FeignClient(name = "serverProvider", url = "http://127.0.0.1:8001")
+@FeignClient(name = "serverProvider", fallback = MyFeignClientApiHystrix.class)
 public interface MyFeignClientApi {
-    @RequestMapping(method = RequestMethod.GET, value = "/sayHello")
+    @RequestMapping( value = "/sayHello")
     SayHelloBO sayHello();
 }

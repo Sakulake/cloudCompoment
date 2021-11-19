@@ -33,9 +33,9 @@ student:
 #全局配置
 # 请求连接的超时时间 默认的时间为 1 秒
 ribbon:
-  ConnectTimeout: 5000
+  ConnectTimeout: 1000
 # 请求处理的超时时间
-  ReadTimeout: 5000
+  ReadTimeout: 1000
   MaxAutoRetries: 1 #同一台实例最大重试次数,不包括首次调用
   MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
   OkToRetryOnAllOperations: false  #是否所有操作都重试
@@ -47,4 +47,14 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 9000
+            timeoutInMilliseconds: 2000
+      circuitBreaker:
+        requestVolumeThreshold: 2
+
+product:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+feign:
+  hystrix:
+    enabled: true
