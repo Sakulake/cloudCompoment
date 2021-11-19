@@ -1,6 +1,5 @@
 package com.learn.springcloud;
 
-import com.learn.springcloud.config.StudentConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,7 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author sdw
- * @date 2021/11/18 10:29:42
+ * @version 1.0
+ * @className ServerProviderApplication
+ * @date 2021/11/19 14:41:13
  * @description
  */
 
@@ -18,9 +19,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableFeignClients
 @EnableScheduling  //启用后，会定时拉取配置
-@EnableConfigurationProperties({StudentConfig.class})
-public class LearnCloudApplication {
+public class ServerProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LearnCloudApplication.class, args);
+        SpringApplication.run(ServerProviderApplication.class, args);
     }
 }
