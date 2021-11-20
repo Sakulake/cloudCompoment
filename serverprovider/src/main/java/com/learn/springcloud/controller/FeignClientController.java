@@ -29,11 +29,11 @@ public class FeignClientController implements MyFeignClientApi {
         SayHelloBO helloBO = new SayHelloBO();
         helloBO.setName(name);
         System.out.println(1);
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return helloBO ;
     }
 //    @RequestMapping("/sayHello")

@@ -1,11 +1,16 @@
 # cloudCompoment
 spring cloud 组件实践
  
-##consul 配置中心
+## consul 配置中心
 通过页面设置config，无效，需要通过命令完成
+consul kv put config/consul-service/data
 
-热部署的原理  是初始化一个定时线程池。 按照delay 的间隔，请求consul 等待或者阻塞 wait-time，如果config版本与本地版本不一致，证明有更行，则发布refresh事件。让RefreshEventListener ，更新context中的配置。
+热部署的原理  是初始化一个定时线程池。 按照delay 的间隔，请求consul 等待或者阻塞 wait-time，如果config版本与本地版本不一致，证明有更新，则发布refresh事件。让RefreshEventListener ，更新context中的配置。
 
+**consul kv的导入导出**
+consul kv export --http-addr=http://10.12.142.216:8500 -token=b3a9bca3-6e8e-9678-ea35-ccb8fb272d42 '' > consul_kv_$ts.json
+echo 'eyJ2ZXJzaW9uX3RpbWVzdGFtcCI6IC0xfQ==' | base64 -d
+consul kv import --http-addr=http://10.12.142.216:8500 -token=b3a9bca3-6e8e-9678-ea35-ccb8fb272d42 @consul_kv_20180521150322.json
 
 ## Feignclient 调用
 ### Feign设置超时时间
@@ -91,3 +96,6 @@ Hystrix使用了一个ConcurrentHashMap来保存线程池
 - 断路器开启
 - 线程池拒绝
 - 信号量拒绝
+
+
+# Sentinel

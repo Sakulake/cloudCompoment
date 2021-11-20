@@ -9,6 +9,10 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author sdw
  * @date 2021/11/18 10:31:08
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 @RestController
 public class IndexController {
+
+
+
     @Value("${description:zy}")
     private String description;
 
@@ -44,6 +51,5 @@ public class IndexController {
         System.out.println(helloBO);
         return helloBO.toString();
     }
-
 
 }
