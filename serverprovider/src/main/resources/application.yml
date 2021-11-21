@@ -23,6 +23,18 @@ spring:
         health-check-path: /actuator/info
         # 服务注册标识，格式为：应用名称+服务器IP+端口
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-
+  zipkin:
+    base-url: http://localhost:9411/
 server:
   port: 8001
+
+AsyncLogger:
+  RingBufferSize: 10000
+# 混合模式下
+AsyncLoggerConfig:
+  RingBufferSize: 10000
+# 自动降级--丢弃日志
+log4j2:
+  AsyncQueueFullPolicy: Discard
+  # 队列满后丢弃DEBUG级别的日志
+  DiscardThreshold: DEBUG

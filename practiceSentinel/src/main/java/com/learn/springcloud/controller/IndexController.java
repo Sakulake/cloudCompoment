@@ -21,7 +21,7 @@ import java.util.List;
 @RefreshScope
 @RestController
 public class IndexController {
-
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(IndexController.class);
 
 
     @Value("${description:zy}")
@@ -48,7 +48,7 @@ public class IndexController {
     @RequestMapping("/sayHello")
     public String sayHello() {
         SayHelloBO helloBO = myFeignClientApi.sayHello();
-        System.out.println(helloBO);
+        log.info(helloBO.toString());
         return helloBO.toString();
     }
 

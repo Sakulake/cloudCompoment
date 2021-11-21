@@ -98,4 +98,26 @@ Hystrix使用了一个ConcurrentHashMap来保存线程池
 - 信号量拒绝
 
 
-# Sentinel
+# Zipkin
+链路的追踪原理：跟踪器位于应用程序中，记录发生的操作的时间和元数据，收集的跟踪数据称为Span，将数据发送到Zipkin的仪器化应用程序中的组件称为Reporter，Reporter通过几种传输方式（http，kafka）之一将追踪数据发送到Zipkin收集器(collector)，然后将跟踪数据进行存储(storage)，由API查询存储以向UI提供数据。
+
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy95amNuaWEwM2ljb1gxYWtHaWFJUktmcmc4SVdpYmN5U3JlVEloa2RsTXJ4VzFCWVdiWnlHMG9vdTZpY0R2STJCWkdXR2N0U2czTWljMTdSV3p4NE5SWDJ3YUl5US82NDA_d3hfZm10PXBuZw?x-oss-process=image/format,png)
+
+Brave 是用来装备 Java 程序的类库，提供了面向 Standard Servlet、Spring MVC、Http Client、JAX RS、Jersey、Resteasy 和 MySQL 等接口的装备能力，可以通过编写简单的配置和代码，让基于这些框架构建的应用可以向 Zipkin报告数据。同时 Brave 也提供了非常简单且标准化的接口，在以上封装无法满足要求的时候可以方便扩展与定制。
+
+Brave 主要是利用拦截器在请求前和请求后分别埋点。例如 Spingmvc 监控使用 Interceptors，Mysql 监控使用 statementInterceptors。同理 Dubbo 的监控是利用 com.alibaba.dubbo.rpc.Filter 来过滤生产者和消费者的请求。
+
+
+# log4j2
+由于spring架构使用的是logback作为日志组件。当然该日志组件还是挺好用的，很方便的进行了日志分割等操作。但是该组件是同步的，所以高访问的时候可能会影响效率，这里就换成log4j2支持异步的日志组件。
+
+disruptor是一个基于无锁化环形队列的高性能并发框架，log4j2就是借助它进行高性能日志异步输出的。
+
+- 日志接口(slf4j)
+  
+  slf4j是对所有日志框架制定的一种规范、标准、接口，并不是一个框架的具体的实现，因为接口并不能独立使用，需要和具体的日志框架实现配合使用（如log4j、logback）
+- 日志实现(log4j、logback、log4j2)
+  - log4j是apache实现的一个开源日志组件
+  - logback同样是由log4j的作者设计完成的，拥有更好的特性，用来取代log4j的一个日志框架，是slf4j的原生实现
+  - Log4j2是log4j 1.x和logback的改进版，据说采用了一些新技术（无锁异步、等等），使得日志的吞吐量、性能比log4j 1.x提高10倍，并解决了一些死锁的bug，而且配置更加简单灵活
+  

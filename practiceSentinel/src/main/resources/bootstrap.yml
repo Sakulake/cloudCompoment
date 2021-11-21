@@ -16,4 +16,5 @@ spring:
           delay: 10000
           wait-time: 30
 
-
+logging:
+  config: classpath:log4j2.xml
