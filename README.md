@@ -107,6 +107,7 @@ Brave 是用来装备 Java 程序的类库，提供了面向 Standard Servlet、
 
 Brave 主要是利用拦截器在请求前和请求后分别埋点。例如 Spingmvc 监控使用 Interceptors，Mysql 监控使用 statementInterceptors。同理 Dubbo 的监控是利用 com.alibaba.dubbo.rpc.Filter 来过滤生产者和消费者的请求。
 
+和log4j2 结合[%X{X-B3-TraceId},%X{X-B3-SpanId}]
 
 # log4j2
 由于spring架构使用的是logback作为日志组件。当然该日志组件还是挺好用的，很方便的进行了日志分割等操作。但是该组件是同步的，所以高访问的时候可能会影响效率，这里就换成log4j2支持异步的日志组件。
@@ -121,3 +122,40 @@ disruptor是一个基于无锁化环形队列的高性能并发框架，log4j2�
   - logback同样是由log4j的作者设计完成的，拥有更好的特性，用来取代log4j的一个日志框架，是slf4j的原生实现
   - Log4j2是log4j 1.x和logback的改进版，据说采用了一些新技术（无锁异步、等等），使得日志的吞吐量、性能比log4j 1.x提高10倍，并解决了一些死锁的bug，而且配置更加简单灵活
   
+
+
+# Spring Cloud Gateway
+
+Spring Cloud Gateway 底层使用了高性能的通信框架Netty。
+1. 基于 Spring Framework 5，Project Reactor 和 Spring Boot 2.0
+2. 集成 Hystrix 断路器
+3. 集成 Spring Cloud DiscoveryClient
+4. Predicates 和 Filters 作用于特定路由，易于编写的 Predicates 和 Filters
+5. 具备一些网关的高级功能：动态路由、限流、路径重写
+
+
+Filter（过滤器）: 和Zuul的过滤器在概念上类似，可以使用它拦截和修改请求，并且对上游的响应，进行二次处理。过滤器为org.springframework.cloud.gateway.filter.GatewayFilter类的实例。
+
+Route（路由）: 网关配置的基本组成模块，和Zuul的路由配置模块类似。一个Route模块由一个 ID，一个目标 URI，一组断言和一组过滤器定义。如果断言为真，则路由匹配，目标URI会被访问。
+
+Predicate（断言）: 这是一个 Java 8 的 Predicate，可以使用它来匹配来自 HTTP 请求的任何内容，例如 headers 或参数。断言的输入类型是一个 ServerWebExchange。
+
+### 流程
+1. 客户端向 Spring Cloud Gateway 发出请求。
+2. 然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。
+3. Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（“pre”）或之后（“post”）执行业务逻辑。
+![](https://upload-images.jianshu.io/upload_images/19816137-eeedbd49be096c05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+gateWay的主要功能之一是转发请求
+，转发规则的定义主要包含三个部分
+1. Route（路由）
+
+   路由是网关的基本单元，由ID、URI、一组Predicate、一组Filter组成，根据Predicate进行匹配转发。
+2. Predicate（谓语、断言）
+
+   路由转发的判断条件，目前SpringCloud Gateway支持多种方式，常见如：Path、Query、Method、Header等，写法必须遵循 key=vlue的形式
+3. Filter（过滤器）
+
+   过滤器是路由转发请求时所经过的过滤逻辑，可用于修改请求、响应内容
+
+其中Route和Predicate必须同时申明

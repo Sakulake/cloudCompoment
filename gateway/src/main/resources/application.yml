@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: serverProvider
+#  profiles:
+#    active: dev
+  cloud:
+    consul:
+      # 服务发现配置
+      discovery:
+        # 启用服务发现
+        enabled: true
+        # 启用服务注册
+        register: true
+        # 服务停止时取消注册
+        deregister: true
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
+        # 执行监控检查的频率
+        health-check-interval: 30s
+        # 设置健康检查失败多长时间后，取消注册
+        health-check-critical-timeout: 30s
+        # 健康检查的路径
+        health-check-path: /actuator/info
+        # 服务注册标识，格式为：应用名称+服务器IP+端口
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    gateway:
+      routes:
+        - id: limit_route
+          uri: http://localhost:8899
+          predicates:
+            - After=2021-11-21T17:32:58.129+08:00[Asia/Shanghai]
+            - Path=/gateway/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@userKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
+  zipkin:
+    base-url: http://localhost:9411/
+server:
+  port: 9001
+
+AsyncLogger:
+  RingBufferSize: 10000
+# 混合模式下
+AsyncLoggerConfig:
+  RingBufferSize: 10000
+# 自动降级--丢弃日志
+log4j2:
+  AsyncQueueFullPolicy: Discard
+  # 队列满后丢弃DEBUG级别的日志
+  DiscardThreshold: DEBUG
