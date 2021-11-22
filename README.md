@@ -98,7 +98,7 @@ Hystrix使用了一个ConcurrentHashMap来保存线程池
 - 信号量拒绝
 
 
-# Zipkin
+# Zipkin(利用拦截器拦截器)
 链路的追踪原理：跟踪器位于应用程序中，记录发生的操作的时间和元数据，收集的跟踪数据称为Span，将数据发送到Zipkin的仪器化应用程序中的组件称为Reporter，Reporter通过几种传输方式（http，kafka）之一将追踪数据发送到Zipkin收集器(collector)，然后将跟踪数据进行存储(storage)，由API查询存储以向UI提供数据。
 
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy95amNuaWEwM2ljb1gxYWtHaWFJUktmcmc4SVdpYmN5U3JlVEloa2RsTXJ4VzFCWVdiWnlHMG9vdTZpY0R2STJCWkdXR2N0U2czTWljMTdSV3p4NE5SWDJ3YUl5US82NDA_d3hfZm10PXBuZw?x-oss-process=image/format,png)

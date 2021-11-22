@@ -1,6 +1,18 @@
 spring:
   application:
-    name: serverProvider
+    name: gateway
+  redis:
+    host: 47.111.17.96
+    port: 6380
+    password: 123456
+    #redis连接超时时间
+    timeout: 3000
+    lettuce:
+      pool:
+        max-wait: -1
+        max-active: 300
+        max-idle: 100
+        min-idle: 20
 #  profiles:
 #    active: dev
   cloud:
@@ -26,16 +38,16 @@ spring:
     gateway:
       routes:
         - id: limit_route
-          uri: http://localhost:8899
+          uri: lb://consul-service
           predicates:
             - After=2021-11-21T17:32:58.129+08:00[Asia/Shanghai]
-            - Path=/gateway/**
+            - Path=/
           filters:
             - name: RequestRateLimiter
               args:
                 key-resolver: '#{@userKeyResolver}'
                 redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 3
+                redis-rate-limiter.burstCapacity: 1
   zipkin:
     base-url: http://localhost:9411/
 server:
