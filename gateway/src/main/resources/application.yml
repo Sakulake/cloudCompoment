@@ -36,18 +36,31 @@ spring:
         # 服务注册标识，格式为：应用名称+服务器IP+端口
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            allowed-methods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTION
       routes:
         - id: limit_route
           uri: lb://consul-service
           predicates:
             - After=2021-11-21T17:32:58.129+08:00[Asia/Shanghai]
-            - Path=/
+            - Path=/*/{segment}
           filters:
             - name: RequestRateLimiter
               args:
                 key-resolver: '#{@userKeyResolver}'
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 1
+            - SetPath=/{segment}
   zipkin:
     base-url: http://localhost:9411/
 server:
