@@ -3,6 +3,11 @@ spring:
     name: serverProvider
 #  profiles:
 #    active: dev
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
   cloud:
     consul:
       # 服务发现配置
@@ -38,3 +43,9 @@ log4j2:
   AsyncQueueFullPolicy: Discard
   # 队列满后丢弃DEBUG级别的日志
   DiscardThreshold: DEBUG
+
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+    type-aliases-package: com.learn.springcloud.entity
