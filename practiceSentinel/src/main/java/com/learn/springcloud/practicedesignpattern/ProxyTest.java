@@ -3,6 +3,7 @@ package com.learn.springcloud.practicedesignpattern;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 
+import java.io.InputStream;
 import java.lang.reflect.Method;
 
 /**
@@ -41,5 +42,10 @@ public class ProxyTest {
             strongenFunction.toString();
             return result;
         }
+    }
+
+    public static void main(String[] args) {
+        ProxyTest proxyTest = new ProxyTest();
+        Object proxy = proxyTest.createProxy(new Object());
     }
 }
