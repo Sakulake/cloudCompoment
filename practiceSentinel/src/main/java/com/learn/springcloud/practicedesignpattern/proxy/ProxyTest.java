@@ -1,9 +1,8 @@
-package com.learn.springcloud.practicedesignpattern;
+package com.learn.springcloud.practicedesignpattern.proxy;
 
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 
-import java.io.InputStream;
 import java.lang.reflect.Method;
 
 /**
