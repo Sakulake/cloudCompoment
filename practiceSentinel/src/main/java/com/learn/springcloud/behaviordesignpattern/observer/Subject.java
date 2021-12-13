@@ -1,4 +1,4 @@
-package com.learn.springcloud.behaviordesignpattern.Observer;
+package com.learn.springcloud.behaviordesignpattern.observer;
 
 public interface Subject {
     public void registe(Observer observer);

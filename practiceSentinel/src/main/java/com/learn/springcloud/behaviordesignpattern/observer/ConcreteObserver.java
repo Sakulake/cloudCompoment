@@ -1,4 +1,4 @@
-package com.learn.springcloud.behaviordesignpattern.Observer;
+package com.learn.springcloud.behaviordesignpattern.observer;
 
 import com.google.common.eventbus.Subscribe;
 

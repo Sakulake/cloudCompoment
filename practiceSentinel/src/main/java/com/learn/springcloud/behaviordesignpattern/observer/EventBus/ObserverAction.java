@@ -1,4 +1,4 @@
-package com.learn.springcloud.behaviordesignpattern.Observer.EventBus;
+package com.learn.springcloud.behaviordesignpattern.observer.EventBus;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

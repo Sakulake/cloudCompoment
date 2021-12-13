@@ -1,11 +1,7 @@
-package com.learn.springcloud.behaviordesignpattern.Observer;
-
-import com.google.common.eventbus.AsyncEventBus;
-import com.google.common.eventbus.EventBus;
+package com.learn.springcloud.behaviordesignpattern.observer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
 
 public class ConcreteSuject implements Subject{
 

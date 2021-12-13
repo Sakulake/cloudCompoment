@@ -1,13 +1,8 @@
-package com.learn.springcloud.behaviordesignpattern.Observer.EventBus;
+package com.learn.springcloud.behaviordesignpattern.observer.EventBus;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observer;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class EventBus {
 

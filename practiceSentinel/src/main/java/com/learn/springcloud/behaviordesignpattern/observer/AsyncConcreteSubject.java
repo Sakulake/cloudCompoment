@@ -1,8 +1,7 @@
-package com.learn.springcloud.behaviordesignpattern.Observer;
+package com.learn.springcloud.behaviordesignpattern.observer;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
-import org.apache.catalina.Executor;
 
 import java.util.concurrent.Executors;
 
