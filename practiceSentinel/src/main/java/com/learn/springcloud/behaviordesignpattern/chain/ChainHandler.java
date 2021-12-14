@@ -25,9 +25,7 @@ public abstract class ChainHandler {
 
     public boolean handle(){
         for(ChainHandler handler :chains){
-            if(handler.doHandle()){
-                continue;
-            }else {
+            if(!handler.doHandle()){
                 return Boolean.FALSE;
             }
         }
