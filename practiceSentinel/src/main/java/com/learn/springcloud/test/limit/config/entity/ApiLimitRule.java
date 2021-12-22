@@ -1,4 +1,4 @@
-package com.learn.springcloud.test.limit.config;
+package com.learn.springcloud.test.limit.config.entity;
 
 
 /**

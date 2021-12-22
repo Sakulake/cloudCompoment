@@ -1,8 +1,6 @@
-package com.learn.springcloud.test.limit.config;
+package com.learn.springcloud.test.limit.config.entity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedSet;
 
 public class AppLimitRule {
     private String appId;
