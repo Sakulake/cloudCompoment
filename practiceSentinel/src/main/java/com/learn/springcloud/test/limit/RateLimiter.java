@@ -14,16 +14,15 @@ public class RateLimiter {
     // 为每个api在内存中存储限流计数器
     private ConcurrentHashMap counters = new ConcurrentHashMap<>();
     private LimitConfig rule;
-
+    private LimiterFactory limiterFactory;
     public RateLimiter() {
         // 将限流规则配置文件ratelimiter-rule.yaml中的内容读取到RuleConfig中
         InputStream in = null;
-        LimitConfig ruleConfig = null;
         try {
             in = this.getClass().getResourceAsStream("/limit_rule.yml");
             if (in != null) {
                 Yaml yaml = new Yaml();
-                ruleConfig = yaml.loadAs(in, LimitConfig.class);
+                rule = yaml.loadAs(in, LimitConfig.class);
             }
         } finally {
             if (in != null) {
@@ -33,6 +32,11 @@ public class RateLimiter {
                 }
             }
         }
+    }
+
+    public boolean rateLimit(String appId,String url){
+        Limiter limiter = limiterFactory.getLimiter();
+        return limiter.limit(appId,url);
     }
 
     public static void main(String[] args) {

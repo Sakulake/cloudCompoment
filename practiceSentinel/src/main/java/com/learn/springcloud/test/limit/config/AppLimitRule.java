@@ -16,11 +16,11 @@ public class AppLimitRule {
         this.appId = appId;
     }
 
-    public List<ApiLimitRule> getRules() {
+    public List<ApiLimitRule> getLimits() {
         return limits;
     }
 
-    public void setRules(List<ApiLimitRule> rules) {
-        this.limits = rules;
+    public void setLimits(List<ApiLimitRule> limits) {
+        this.limits = limits;
     }
 }

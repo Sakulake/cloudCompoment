@@ -14,7 +14,13 @@ public class LimiterFactory {
     private ConcurrentHashMap <String,Limiter> limiters = new ConcurrentHashMap<>();
 
 
-    public Limiter getLimiter(String type){
+    public Limiter getLimiter(){
+        String type = getLimitAlgType();
         return limiters.get(type);
+    }
+
+    private String getLimitAlgType() {
+        // TODO: 2021/12/22 通过配置文件 
+        return null;
     }
 }
