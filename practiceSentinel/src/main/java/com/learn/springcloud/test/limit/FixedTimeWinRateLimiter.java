@@ -70,6 +70,7 @@ public class FixedTimeWinRateLimiter implements Limiter{
     @Override
     public boolean limit(String podId, String url) {
         try {
+
             return this.tryAcquire();
         } catch (Exception e) {
             e.printStackTrace();
