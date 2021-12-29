@@ -40,4 +40,8 @@ public class Node {
             System.out.println(this.iterator.next().getValue());
         }
     }
+
+    public Iterator<Node> getIterator() {
+        return iterator;
+    }
 }
