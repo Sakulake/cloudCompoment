@@ -10,8 +10,8 @@ package com.learn.springcloud.datastructuresandalgorithms.sort;
 
 public class InsertSort {
     //从小到大
-    public int[] sort(int [] array){
-        for (int i=1;i>=0;i--){
+    public static int[] sort(int [] array){
+        for (int i=1;i<array.length;i++){
             int cur =array[i];
             int j;
             for(j=i-1;j>=0;--j){
@@ -27,9 +27,12 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        int i =10;
-        if(10>--i){
-            System.out.println(1);
+        int[] array = {1,8,2,3,9,2};
+
+        array = sort(array);
+
+        for (int a : array){
+            System.out.println(a);
         }
     }
 
