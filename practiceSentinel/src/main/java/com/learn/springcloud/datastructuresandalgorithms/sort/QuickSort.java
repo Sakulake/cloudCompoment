@@ -3,34 +3,40 @@ package com.learn.springcloud.datastructuresandalgorithms.sort;
 public class QuickSort {
 
     /**
-     * f(n) = f(n/2) + f(n/2) ,从小到大
+     * f(n) = f(n/2) + f(n/2) +n,从小到大
      * @param array
      * @param start
      * @param stop
      * @return
      */
     public static int[] sort(int [] array,int start, int stop){
-        int compareValue = array[stop];
-        int indexOfNeedMoveToLarge =-1 ;
-        int indexOfNeedMoveToSmall =-1;
-        for (int i = 0;i<stop-1;i++){
-            if (array[i]>compareValue){
-                if(indexOfNeedMoveToLarge<0){
-                    indexOfNeedMoveToLarge =i;
-                }
-                if ( indexOfNeedMoveToSmall >0){
-                    swap(array,indexOfNeedMoveToLarge,indexOfNeedMoveToSmall);
-                }
-            }else{
-                if(indexOfNeedMoveToSmall<0){
-                    indexOfNeedMoveToSmall =i;
-                }
-                if ( indexOfNeedMoveToLarge >0){
-                    swap(array,indexOfNeedMoveToLarge,indexOfNeedMoveToSmall);
-                }
-            }
 
+        if(start>=stop){
+            return  array;
         }
+        int low = start;
+        int high = stop;
+        int temp = array[low];
+        while (high>low){
+            while (high>low){
+                if(array[high]<temp){
+                    break;
+                }
+                high--;
+            }
+            swap(array,low,high);
+            while (low<high){
+                if (array[low]>=temp){
+                    break;
+                }
+                low++;
+            }
+            swap(array,low,high);
+        }
+        array[low]=temp;
+
+        sort(array,start,low);
+        sort(array,low+1,stop);
 
         return array;
     }
