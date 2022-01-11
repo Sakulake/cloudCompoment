@@ -19,7 +19,7 @@ import com.learn.springcloud.datastructuresandalgorithms.sort.QuickSort;
 
 public class Solution306 {
     public static void main(String[] args) {
-        QuickSort sort = new QuickSort();
+        Solution306 sort = new Solution306();
         System.out.println(sort.isAdditiveNumber("198019823962"));
     }
 
