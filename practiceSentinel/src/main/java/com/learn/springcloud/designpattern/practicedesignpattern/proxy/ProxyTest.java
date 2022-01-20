@@ -4,6 +4,7 @@ import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * @author sdw
@@ -47,4 +48,5 @@ public class ProxyTest {
         ProxyTest proxyTest = new ProxyTest();
         Object proxy = proxyTest.createProxy(new Object());
     }
+
 }
