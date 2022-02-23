@@ -18,6 +18,7 @@ public class SkipList {
 
     public class Node {
         int data;
+        //当前节点下一个节点的所有层索引节点
         private Node forwards[] = new Node[MAX_LEVEL];
 
         public Node(int data) {
@@ -36,8 +37,8 @@ public class SkipList {
         Node [] needUpdateNodes = new Node[level];
         Node current = head;
         for (int i = level-1; i>=0;i--){
-           while (current.forwards[i].data<value && current.forwards[i].forwards[i]!=null){
-               current= current.forwards[i].forwards[i];
+           while (current.forwards[i] != null && current.forwards[i].data<value){
+               current= current.forwards[i];
            }
             needUpdateNodes[i] = current;
         }

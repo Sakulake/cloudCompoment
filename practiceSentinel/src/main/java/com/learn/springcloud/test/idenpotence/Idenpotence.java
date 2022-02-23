@@ -9,4 +9,5 @@ package com.learn.springcloud.test.idenpotence;
  */
 
 public interface Idenpotence {
+
 }

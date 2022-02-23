@@ -1,10 +1,10 @@
 package com.learn.springcloud.designpattern.practicedesignpattern.proxy;
 
-import org.springframework.cglib.proxy.InvocationHandler;
-import org.springframework.cglib.proxy.Proxy;
 
+
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.Map;
+import java.lang.reflect.Proxy;
 
 /**
  * @author sdw
@@ -15,7 +15,7 @@ import java.util.Map;
  * 联系动态代理模式
  */
 
-public class ProxyTest {
+public class ProxyJDKTest {
     private Object strongenFunction;
 
 
@@ -39,14 +39,16 @@ public class ProxyTest {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             Object result = method.invoke(proxiedObject, args);
-            strongenFunction.toString();
-            return result;
+            System.out.println("proxy ----1234");
+            return null;
         }
     }
 
     public static void main(String[] args) {
-        ProxyTest proxyTest = new ProxyTest();
-        Object proxy = proxyTest.createProxy(new Object());
+        System.getProperties().setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+        ProxyJDKTest proxyTest = new ProxyJDKTest();
+        NormalService proxy =  (NormalService)proxyTest.createProxy(new NormalServiceImpl());
+        proxy.sayHello();
     }
 
 }
