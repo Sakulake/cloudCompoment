@@ -1,5 +1,11 @@
 package com.learn.springcloud.designpattern.practicedesignpattern.proxy;
 
+import com.learn.springcloud.javafunc.aop.MyAnnotation;
+import org.springframework.stereotype.Service;
+
+
+@Service
+@MyAnnotation
 public class NormalServiceImpl implements NormalService {
 
     @Override

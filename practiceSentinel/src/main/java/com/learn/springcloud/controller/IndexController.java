@@ -2,6 +2,7 @@ package com.learn.springcloud.controller;
 
 import com.learn.springcloud.bo.SayHelloBO;
 import com.learn.springcloud.config.StudentConfig;
+import com.learn.springcloud.designpattern.practicedesignpattern.proxy.NormalService;
 import com.learn.springcloud.feignapi.MyFeignClientApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,8 @@ public class IndexController {
 
     @Autowired
     private MyFeignClientApi myFeignClientApi;
+    @Autowired
+    NormalService normalService;
 
     @RequestMapping("/description")
     public String testDescription() {
@@ -52,4 +55,10 @@ public class IndexController {
         return helloBO.toString();
     }
 
+    @RequestMapping("/sayHelloAOP")
+    public String sayHelloAOP() {
+        normalService.sayHello();
+
+        return "success";
+    }
 }

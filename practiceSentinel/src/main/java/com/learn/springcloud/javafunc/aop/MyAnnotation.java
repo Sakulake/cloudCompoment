@@ -37,9 +37,7 @@ import java.lang.annotation.*;
  *
  */
 
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
+
 /**
  * 1. 使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口
  * 2. 成员以无参数无异常的方式声明，注意区别一般类成员变量的声明,其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称.可以使用default为成员指定一个默认值
@@ -48,7 +46,9 @@ import java.lang.annotation.*;
  * 5. 如果注解只有一个成员，并且把成员取名为value()，则在使用时可以忽略成员名和赋值号“=” ,例如JDK注解的@SuppviseWarnings ；如果成员名 不为value，则使用时需指明成员名和赋值号"="，
  */
 
-
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+//@Inherited
 public @interface MyAnnotation {
 
     String name() default "David";

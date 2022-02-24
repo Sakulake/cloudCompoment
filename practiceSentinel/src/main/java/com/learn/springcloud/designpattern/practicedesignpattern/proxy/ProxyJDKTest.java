@@ -2,6 +2,9 @@ package com.learn.springcloud.designpattern.practicedesignpattern.proxy;
 
 
 
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -14,9 +17,11 @@ import java.lang.reflect.Proxy;
  * @description
  * 联系动态代理模式
  */
+@Aspect
 
 public class ProxyJDKTest {
     private Object strongenFunction;
+
 
 
     public void setStrongenFunction(Object strongenFunction) {
@@ -50,5 +55,6 @@ public class ProxyJDKTest {
         NormalService proxy =  (NormalService)proxyTest.createProxy(new NormalServiceImpl());
         proxy.sayHello();
     }
+
 
 }
