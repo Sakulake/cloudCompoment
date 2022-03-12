@@ -13,6 +13,7 @@ echo 'eyJ2ZXJzaW9uX3RpbWVzdGFtcCI6IC0xfQ==' | base64 -d
 consul kv import --http-addr=http://10.12.142.216:8500 -token=b3a9bca3-6e8e-9678-ea35-ccb8fb272d42 @consul_kv_20180521150322.json
 
 ## Feignclient 调用
+动态代理，实现Feign的增强，默认使用FeignInvocationHandler进行处理
 ### Feign设置超时时间
 使用Feign调用接口分两层，ribbon的调用和hystrix的调用，所以ribbon的超时时间和Hystrix的超时时间的结合就是Feign的超时时间
 

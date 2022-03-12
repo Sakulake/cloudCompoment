@@ -76,6 +76,10 @@ public class CountDownLatchTest {
 
         countDownLatch.await();
 
+        Semaphore semaphore = new Semaphore(10);
+
+        semaphore.acquire();
+        semaphore.release();
         System.out.println("执行第3步");
         return;
     }
