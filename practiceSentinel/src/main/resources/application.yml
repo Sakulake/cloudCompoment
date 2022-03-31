@@ -74,3 +74,8 @@ log4j2:
   AsyncQueueFullPolicy: Discard
   # 队列满后丢弃DEBUG级别的日志
   DiscardThreshold: DEBUG
+ali:
+  rocketmq:
+    consumerGroup: consumerTest
+    producerGroup: producerTest
+    namesrvaddr: 47.111.17.96:9876
