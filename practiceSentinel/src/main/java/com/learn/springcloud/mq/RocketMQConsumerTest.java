@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
-@Component
-public class RocketMQConsumer {
+//@Component
+public class RocketMQConsumerTest {
     /**
      * 生产者的组名
      */
@@ -30,9 +31,10 @@ public class RocketMQConsumer {
     @Value("${ali.rocketmq.namesrvaddr}")
     private String namesrvAddr;
 
+    DefaultMQPushConsumer consumer = null;
     @PostConstruct
     public void consume(){
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup);
+        consumer = new DefaultMQPushConsumer(consumerGroup);
         consumer.setNamesrvAddr(namesrvAddr);
         try {
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
@@ -57,5 +59,9 @@ public class RocketMQConsumer {
         } catch (MQClientException e) {
             e.printStackTrace();
         }
+    }
+    @PreDestroy
+    public void shotdown(){
+        consumer.shutdown();
     }
 }

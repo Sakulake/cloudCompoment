@@ -74,6 +74,9 @@ log4j2:
   AsyncQueueFullPolicy: Discard
   # 队列满后丢弃DEBUG级别的日志
   DiscardThreshold: DEBUG
+feign:
+  hystrix:
+    enabled: true
 ali:
   rocketmq:
     consumerGroup: consumerTest

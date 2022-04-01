@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.UnsupportedEncodingException;
 
-@Component
-public class RocketMQProducer {
+//@Component
+public class RocketMQProducerTest {
     /**
      * 生产者的组名
      */
