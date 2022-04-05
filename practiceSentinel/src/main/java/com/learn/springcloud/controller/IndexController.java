@@ -16,6 +16,7 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,5 +98,11 @@ public class IndexController {
     }
 
 
+    @Autowired
+    RedisTemplate redisTemplate;
+    @RequestMapping("/testRedis")
+    public String testRedis(){
+        return  ( String)redisTemplate.opsForValue().get("testRedis");
+    }
 
 }
