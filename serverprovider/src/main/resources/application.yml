@@ -5,9 +5,13 @@ spring:
 #    active: dev
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: shaodawei@2022
+    url: jdbc:mysql://47.111.17.96:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+
   cloud:
     consul:
       # 服务发现配置
@@ -28,6 +32,7 @@ spring:
         health-check-path: /actuator/info
         # 服务注册标识，格式为：应用名称+服务器IP+端口
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        defaultContext: ${spring.application.name}
   zipkin:
     base-url: http://localhost:9411/
 server:
@@ -46,6 +51,17 @@ log4j2:
 
 
 
+#mybatis:
+#  mapper-locations: classpath:mapping/*Mapper.xml
+#    type-aliases-package: com.learn.springcloud.entity
 mybatis:
-  mapper-locations: classpath:mapping/*Mapper.xml
-    type-aliases-package: com.learn.springcloud.entity
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.demo.entity
+
+myproperties:
+  name: qwer
+
+ali:
+  rocketmq:
+    producerGroup: slowsql
+    namesrvaddr: 47.111.17.96:9876
