@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "myproperties") //前缀：对应consul 配置中心的 student 前缀
 public class MyConfig {
-    private String name;
+    public String name;
 
     public String getName() {
         return name;
