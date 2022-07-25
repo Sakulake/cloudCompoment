@@ -5,6 +5,7 @@ import com.learn.springcloud.config.MyConfig;
 import com.learn.springcloud.feignapi.MyFeignClientApi;
 import com.learn.springcloud.mapper.MiniproUserMapper;
 import com.learn.springcloud.po.MiniproUser;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
