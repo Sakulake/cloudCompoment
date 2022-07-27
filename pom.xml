@@ -17,7 +17,7 @@
     </parent>
 
     <modules>
-        <module>practicesentinel</module>
+        <module>practicsentinel</module>
         <module>serverprovider</module>
         <module>common</module>
         <module>gateway</module>
@@ -35,4 +35,23 @@
         <docker.image.prefix>sdw</docker.image.prefix>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
