@@ -3,6 +3,7 @@ package com.learn.springcloud.controller;
 import com.learn.springcloud.model.DataCenterData;
 import com.learn.springcloud.model.LongPollTask;
 import org.springframework.http.HttpRequest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,11 @@ import javax.servlet.AsyncContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -79,5 +82,21 @@ public class LongPollController {
         }
         return "success";
 
+    }
+
+    /**
+     * 测试@Transaction注解什么异常回滚
+     * 1. 动态代理时所有的Throwable的子类都被切面逻辑捕获，但是最后还有rule类进行类型校验，如果注解中没有备注，则使用默认判断，是否是Error或者是runnable的子类
+     * 2. 在@Transaction注解所在类的方法调用自身方法时，不起作用，应为动态代理生成的切面逻辑，在执行被代理类的逻辑时用的是反射调用目标方法，该方法调用自身的方法时自然不会加入切面逻辑，就是事务管理
+     */
+    private String throwFlag ="1";
+    @Transactional
+    @PostMapping("/testTransaction")
+    public String testTransaction(@RequestBody Map<String,String> request) throws FileNotFoundException {
+        if (throwFlag.equals(request.get("code")) ){
+            throw new FileNotFoundException("");
+        }else{
+            throw new RuntimeException("");
+        }
     }
 }
