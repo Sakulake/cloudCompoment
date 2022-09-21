@@ -4,7 +4,7 @@ represent  代表
 terms 条款
 Given these 基于这些
 carry out 执行
-blocking mechanics 机制
+blocking mechanics 阻塞机制
 maintain 维持
 manipulated 被操作
 with respect to 可以类比于of、about、by、with和宾语连接词that。
@@ -78,3 +78,9 @@ exposes 暴露
 
 
 latch 闩
+
+entail 蕴含
+
+notion 概念
+ownership 所有权
+appropriately 适当的

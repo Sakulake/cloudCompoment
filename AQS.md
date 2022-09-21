@@ -10,4 +10,7 @@ AbstractQueenedSychronizer的简写。
 
 子类应该分为两种模式 shared  exclusive
 
-##  
+还有个内部类 Condition Object
+
+##  结构
+
