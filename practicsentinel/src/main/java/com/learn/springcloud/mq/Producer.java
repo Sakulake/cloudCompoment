@@ -1,6 +1,5 @@
 //package com.learn.springcloud.mq;
 //
-//import com.learn.springcloud.controller.IndexController;
 //import org.apache.rocketmq.client.exception.MQClientException;
 //import org.apache.rocketmq.client.producer.DefaultMQProducer;
 //import org.springframework.beans.factory.annotation.Value;

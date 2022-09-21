@@ -16,6 +16,7 @@ public class RedLockUtil {
     @PostConstruct
     public  void init(){
         Config config = new Config();
+//        config.useClusterServers().addNodeAddress("47.111.17.96:16379").setPassword("shaodawei2022");
         config.useSingleServer().setAddress("redis://47.111.17.96:16379").setPassword("shaodawei2022");
         redissonClient = Redisson.create(config);
     }

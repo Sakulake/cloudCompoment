@@ -144,3 +144,24 @@ Considerations 考虑事项
 
 aware 意识到
 idiom 习惯用法
+Indicate 表明
+
+permit 允许
+
+unconditionally 无条件
+
+propagate 传播
+
+enhancements 增强发展
+
+for the sake of 为了
+
+
+explicitly 明确的
+
+intrinsics 内在
+
+anticipation 预期
+
+apparently 显然
+
