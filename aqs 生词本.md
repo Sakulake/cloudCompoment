@@ -84,3 +84,63 @@ entail 蕴含
 notion 概念
 ownership 所有权
 appropriately 适当的
+semantics 语义
+
+Predecessors 前辈
+
+implicit 隐藏
+capabilities 能力
+
+optional 可选的
+
+contention 竞争
+favor 青睐
+
+granting 授予
+guarantee 保证
+
+particular 特殊‘
+
+overall 全面
+i. e. 换句话说
+variances 变化
+
+Note however 但是请注意
+
+Thus 因此
+
+multiple 多种多样
+
+honor 遵从
+
+recommended 推荐
+
+built-in 内置
+
+recursive 递归
+
+exceed 超越
+
+extensive 广泛
+
+flexible 灵活的
+
+associated 联系的
+
+opposite 对面的
+lexical 词汇
+scope 范围
+
+dormant 休眠
+detect 检测
+
+erroneous 错误
+
+circumstances 情况
+
+purposes 目的
+
+Considerations 考虑事项
+
+aware 意识到
+idiom 习惯用法
