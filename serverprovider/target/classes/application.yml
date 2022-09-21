@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: serverProvider
+#  profiles:
+#    active: dev
+  datasource:
+    username: root
+    password: shaodawei@2022
+    url: jdbc:mysql://47.111.17.96:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+
+  cloud:
+    consul:
+      host: 47.111.17.96
+      port: 8500
+      # 服务发现配置
+      discovery:
+        # 启用服务发现
+        enabled: true
+        # 启用服务注册
+        register: true
+        # 服务停止时取消注册
+        deregister: true
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
+        # 执行监控检查的频率
+        health-check-interval: 30s
+        # 设置健康检查失败多长时间后，取消注册
+        health-check-critical-timeout: 30s
+        # 健康检查的路径
+        health-check-path: /actuator/info
+        # 服务注册标识，格式为：应用名称+服务器IP+端口
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        defaultContext: ${spring.application.name}
+  zipkin:
+    base-url: http://localhost:9411/
+server:
+  port: 8001
+
+AsyncLogger:
+  RingBufferSize: 10000
+# 混合模式下
+AsyncLoggerConfig:
+  RingBufferSize: 10000
+# 自动降级--丢弃日志
+log4j2:
+  AsyncQueueFullPolicy: Discard
+  # 队列满后丢弃DEBUG级别的日志
+  DiscardThreshold: DEBUG
+
+
+
+#mybatis:
+#  mapper-locations: classpath:mapping/*Mapper.xml
+#    type-aliases-package: com.learn.springcloud.entity
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.demo.entity
+
+myproperties:
+  name: qwer
+
+ali:
+  rocketmq:
+    producerGroup: slowsql
+    namesrvaddr: 47.111.17.96:9876
