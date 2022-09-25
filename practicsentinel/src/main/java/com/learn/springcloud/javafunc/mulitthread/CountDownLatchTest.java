@@ -7,6 +7,9 @@ import java.util.concurrent.*;
 
 public class CountDownLatchTest {
     public static void main(String[] args) throws InterruptedException {
+        Semaphore semaphore = new Semaphore(3);
+        semaphore.acquire();
+        semaphore.release();
         CountDownLatch countDownLatch = new CountDownLatch(3);
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1,
                 1,

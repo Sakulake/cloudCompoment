@@ -34,6 +34,7 @@ public class TestLock {
             public void run() {
                 System.out.println("thread name "+Thread.currentThread().getName()+" thread id "+Thread.currentThread().getId()+" is running");
                 lock.lock();
+
                 try {
                     System.out.println("thread name "+Thread.currentThread().getName()+" thread id "+Thread.currentThread().getId()+" got lock");
 

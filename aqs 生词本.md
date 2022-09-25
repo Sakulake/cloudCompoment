@@ -49,7 +49,7 @@ In particular 尤其
 
 Throughput 吞吐量
 scalability  可拓展性
-guaranteed 放心
+guaranteed 放心 保证
 
 starvation-free 无饥饿
 
@@ -165,3 +165,34 @@ anticipation 预期
 
 apparently 显然
 
+ongoing 进行中的
+
+further 更远
+
+present 当下的
+
+elided 省略
+
+
+combining 结合
+
+arbitrary 随意的
+
+suspension 暂停
+
+successor 接班人
+
+unlikely 生词本
+
+reinterrupt 重新中断
+
+hint 暗示
+
+yield 屈服
+
+
+over-utilise 过渡使用
+
+
+profiling 分析
+benchmarking 基准测试
