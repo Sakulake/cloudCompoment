@@ -196,3 +196,11 @@ over-utilise 过渡使用
 
 profiling 分析
 benchmarking 基准测试
+
+occasionally 偶尔的
+
+cyclic 循环的
+
+due to 由于
+
+deterministic 确定性

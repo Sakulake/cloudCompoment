@@ -1,8 +1,6 @@
 package com.learn.springcloud;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -10,7 +8,25 @@ public class ThreadTest {
     private static final ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
     private static final ReentrantLock reentrantLockTest = new ReentrantLock();
 
+    static Semaphore  semaphore = new Semaphore(3);
+    static CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+
+
     public static void main(String[] args) {        //基于println方法中的synchronize代码块测试运行或者监视线程
+        try {
+            cyclicBarrier.await();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (BrokenBarrierException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            semaphore.release();
+        }
         Thread thread1 = new Thread(() -> {
             while (true) {
                 System.out.println("运行或者监视线程1");
@@ -75,6 +91,7 @@ public class ThreadTest {
         reentrantLockTest.lock();
         try {
             while (true) {
+
             }
         } finally {
             reentrantLockTest.unlock();

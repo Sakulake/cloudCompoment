@@ -67,7 +67,7 @@ for (;;) {
 
 ##### parkAndCheckInterrupt（aqs）
 1.  LockSupport.park(this);  
-    1.  设置Thread.parkBlocker = 当前aqs 
+    1.  设置Thread.parkBlocker = 当前aqs对象
     2.  阻塞当前线程
     3.  (被唤起后) 设置Thread.parkBlocker = null 
 2.  return Thread.interrupted()
@@ -264,3 +264,14 @@ lock在线程唤起后，如果线程被中断，继续参与锁获取
         if (ws > 0 || !compareAndSetWaitStatus(p, ws, Node.SIGNAL))
             LockSupport.unpark(node.thread);
         return true;
+
+# 常用工具使用
+1. CountDownLatch
+   countdown 减少state -1，如果减到0,unpark所有队列里线程
+   await = 在state=0时获取锁，如果不等于0,则park当前线程
+    用完以后不能重复使用
+2. CyclicBarrier
+    利用一个condition对象trip存储阻塞线程，利用一个Generation对象标志一次等待
+    await() 线程进入等待，当index==0 时，执行申明CyclicBarrier是传入的barrierCommand
+    并且调用nextGeneration(signalAll、创建下一代 generation)
+3. Semaphore
