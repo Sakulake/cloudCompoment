@@ -204,3 +204,21 @@ cyclic 循环的
 due to 由于
 
 deterministic 确定性
+
+aborting 终止
+
+eligible 有资格的
+
+lookup in 查找
+
+heuristic 启发式的
+
+retention 保留
+
+via 经过
+
+out-of-thin-air 凭空而来
+
+optimizing 优化
+
+profiles 配置文件

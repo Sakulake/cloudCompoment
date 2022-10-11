@@ -1,8 +1,7 @@
 package com.learn.springcloud;
 
 import java.util.concurrent.*;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.*;
 
 public class ThreadTest {
     private static final ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
@@ -11,8 +10,20 @@ public class ThreadTest {
     static Semaphore  semaphore = new Semaphore(3);
     static CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
 
-
+    static ReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
     public static void main(String[] args) {        //基于println方法中的synchronize代码块测试运行或者监视线程
+        Integer integer = 1000;
+        Integer integer1 = 1000;
+        Future<Integer> future = new CompletableFuture<>();
+        if (integer1 == integer){
+            System.out.println("我错了");
+        }else{
+            System.out.println("我的对");
+        }
+        Lock readLock = readWriteLock.readLock();
+        Lock writeLock = readWriteLock.writeLock();
+        readLock.lock();
+        writeLock.lock();
         try {
             cyclicBarrier.await();
         } catch (InterruptedException e) {

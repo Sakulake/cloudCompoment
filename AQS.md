@@ -275,3 +275,5 @@ lock在线程唤起后，如果线程被中断，继续参与锁获取
     await() 线程进入等待，当index==0 时，执行申明CyclicBarrier是传入的barrierCommand
     并且调用nextGeneration(signalAll、创建下一代 generation)
 3. Semaphore
+    就是普通的aqs非公平共享锁
+4. ReadWriteLock
