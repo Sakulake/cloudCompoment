@@ -17,7 +17,7 @@ public class BufferInputStream extends FileInputStream{
 
     @Override
     public byte[] read() {
-        //strongenFunction
+        //strongerFunction
         return null;
     }
 

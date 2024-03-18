@@ -1,8 +1,4 @@
 package com.learn.springcloud.javafunc.mulitthread;
-
-import sun.nio.ch.ThreadPool;
-
-import java.util.Queue;
 import java.util.concurrent.*;
 
 public class CountDownLatchTest {
@@ -79,10 +75,10 @@ public class CountDownLatchTest {
 
         countDownLatch.await();
 
-        Semaphore semaphore = new Semaphore(10);
+        Semaphore semaphore1 = new Semaphore(10);
 
-        semaphore.acquire();
-        semaphore.release();
+        semaphore1.acquire();
+        semaphore1.release();
         System.out.println("执行第3步");
         return;
     }
